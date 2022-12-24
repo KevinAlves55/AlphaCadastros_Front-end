@@ -1,8 +1,9 @@
-import styles from "./Styles.module.css";
-import common from "../../styles/Common.module.css";
 import { InputPatternFormat } from "./components/InputPatternFormat";
 import { TextField } from "./components/TextField";
 import { Checkbox } from "./components/Checkbox";
+
+import styles from "./Styles.module.css";
+import common from "../../styles/Common.module.css";
 
 export const Records: React.FC = () => {
   return (
