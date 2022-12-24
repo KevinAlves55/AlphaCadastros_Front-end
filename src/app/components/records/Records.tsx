@@ -2,6 +2,7 @@ import styles from "./Styles.module.css";
 import common from "../../styles/Common.module.css";
 import { InputPatternFormat } from "./components/InputPatternFormat";
 import { TextField } from "./components/TextField";
+import { Checkbox } from "./components/Checkbox";
 
 export const Records: React.FC = () => {
   return (
@@ -50,21 +51,13 @@ export const Records: React.FC = () => {
 
         <section className={styles.checkboxFields}>
           <div className={styles.checkboxFieldsColumn}>
-            <div className={styles.checkboxItem}>
-              <input type="checkbox" />
-              <label>Número de celular possui Whatsapp</label>
-            </div>
-
-            <div className={styles.checkboxItem}>
-              <input type="checkbox" />
-              <label>Enviar notificações por SMS</label>
-            </div>
+            <Checkbox label="Número de celular possui Whatsapp" />
+            <Checkbox label="Enviar notificações por SMS" />
           </div>
 
           <div className={styles.checkboxFieldsColumn}>
             <div className={styles.checkboxItem}>
-              <input type="checkbox" />
-              <label>Enviar notificações por E-mail</label>
+              <Checkbox label="Enviar notificações por E-mail" />
             </div>
           </div>
         </section>
