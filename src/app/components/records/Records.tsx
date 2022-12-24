@@ -1,5 +1,6 @@
 import styles from "./Styles.module.css";
 import common from "../../styles/Common.module.css";
+import { InputModel } from "./components/InputModel";
 
 export const Records: React.FC = () => {
   return (
@@ -7,37 +8,15 @@ export const Records: React.FC = () => {
       <form>
         <header className={styles.fields}>
           <div className={styles.fieldsColumns}>
-            <div className={styles.boxInput}>
-              <label htmlFor="nome">Nome completo</label>
-              <input id="nome" type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
-
-            <div className={styles.boxInput}>
-              <label htmlFor="">E-mail</label>
-              <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
-
-            <div className={styles.boxInput}>
-              <label htmlFor="">Telefone para contato</label>
-              <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
+            <InputModel label="Nome completo" placeholder="Ex.: Alguma coisa super bacana" />
+            <InputModel label="E-mail" placeholder="Ex.: Alguma coisa super bacana" />
+            <InputModel label="Telefone para contato" placeholder="Ex.: Alguma coisa super bacana" />
           </div>
 
           <div className={styles.fieldsColumns}>
-            <div className={styles.boxInput}>
-              <label htmlFor="">Data de nascimento</label>
-              <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
-
-            <div className={styles.boxInput}>
-              <label htmlFor="">Profissão</label>
-              <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
-
-            <div className={styles.boxInput}>
-              <label htmlFor="">Celular para contato</label>
-              <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
+            <InputModel label="Data de nascimento" placeholder="Ex.: Alguma coisa super bacana" />
+            <InputModel label="Profissão" placeholder="Ex.: Alguma coisa super bacana" />
+            <InputModel label="Celular para contato" placeholder="Ex.: Alguma coisa super bacana" />
           </div>
         </header>
 

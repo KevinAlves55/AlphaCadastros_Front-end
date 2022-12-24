@@ -27,36 +27,6 @@
   gap: 2rem;
 }
 
-.fieldsColumns .boxInput {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.boxInput label {
-  color: var(--gray-600);
-  font-size: 1rem;
-}
-
-.boxInput input {
-  width: 100%;
-  border: 0;
-  background-color: transparent;
-  border-bottom: 1px solid var(--gray-300);
-  padding-bottom: 0.4rem;
-  outline: none;
-  font-size: 1.1rem;
-  color: var(--gray-600);
-}
-
-.boxInput input:focus {
-  border-bottom: 1px solid var(--blue-dark);
-}
-
-.boxInput input::placeholder {
-  color: var(--gray-400);
-}
-
 .checkboxFields {
   margin-top: 1rem;
   width: 100%;
