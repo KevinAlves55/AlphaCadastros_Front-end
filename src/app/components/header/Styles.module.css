@@ -13,6 +13,7 @@
 
 .adjust img {
   height: inherit;
+  width: inherit;
 }
 
 .adjust h1 {
@@ -20,8 +21,13 @@
 }
 
 @media (max-width: 341px) {
+  .adjust img {
+    height: 6rem;
+    width: 6rem;
+  }
+
   .adjust h1 {
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
