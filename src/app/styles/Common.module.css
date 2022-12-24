@@ -1,5 +1,4 @@
 .container {
-  width: 81.25rem;
+  max-width: 81.25rem;
   margin: 0 auto;
-  background-color: red;
 }
