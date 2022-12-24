@@ -5,62 +5,64 @@ export const Records: React.FC = () => {
   return (
     <main className={`${common.container} ${styles.main}`}>
       <form>
-        <section className={styles.fields}>
+        <header className={styles.fields}>
           <div className={styles.fieldsColumns}>
             <div className={styles.boxInput}>
-              <label htmlFor="">Nome completo</label>
+              <label htmlFor="nome">Nome completo</label>
+              <input id="nome" type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
+            </div>
+
+            <div className={styles.boxInput}>
+              <label htmlFor="">E-mail</label>
               <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
             </div>
 
             <div className={styles.boxInput}>
-              <label htmlFor="">Nome completo</label>
-              <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
-            </div>
-
-            <div className={styles.boxInput}>
-              <label htmlFor="">Nome completo</label>
+              <label htmlFor="">Telefone para contato</label>
               <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
             </div>
           </div>
 
           <div className={styles.fieldsColumns}>
             <div className={styles.boxInput}>
-              <label htmlFor="">Nome completo</label>
+              <label htmlFor="">Data de nascimento</label>
               <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
             </div>
 
             <div className={styles.boxInput}>
-              <label htmlFor="">Nome completo</label>
+              <label htmlFor="">Profissão</label>
               <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
             </div>
 
             <div className={styles.boxInput}>
-              <label htmlFor="">Nome completo</label>
+              <label htmlFor="">Celular para contato</label>
               <input type="text" placeholder="Ex.: Kevin Alves Da Silva dasd" />
             </div>
           </div>
-        </section>
+        </header>
 
-        <section>
-          <div>
-            <div>
+        <section className={styles.checkboxFields}>
+          <div className={styles.checkboxFieldsColumn}>
+            <div className={styles.checkboxItem}>
               <input type="checkbox" />
               <label>Número de celular possui Whatsapp</label>
             </div>
 
-            <div>
+            <div className={styles.checkboxItem}>
               <input type="checkbox" />
               <label>Enviar notificações por SMS</label>
             </div>
           </div>
 
-          <div>
-            <input type="checkbox" />
-            <label>Enviar notificações por E-mail</label>
+          <div className={styles.checkboxFieldsColumn}>
+            <div className={styles.checkboxItem}>
+              <input type="checkbox" />
+              <label>Enviar notificações por E-mail</label>
+            </div>
           </div>
         </section>
 
-        <button type="submit">
+        <button type="submit" className={styles.cadastrarContato}>
           Cadastrar contato
         </button>
       </form>
