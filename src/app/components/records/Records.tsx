@@ -1,6 +1,8 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 import axios from "axios";
+import { FormHandles } from "@unform/core";
+import { Form } from "@unform/web";
 import { toast } from "react-toastify";
 
 import { InputPatternFormat } from "./components/InputPatternFormat";
@@ -11,44 +13,42 @@ import styles from "./Styles.module.css";
 import common from "../../styles/Common.module.css";
 import { Env } from "../../env";
 
-export const Records: React.FC = () => {
-  const [dataDeNascimento, setDataDeNascimento] = useState("");
+interface IDataForm {
+  nome: string,
+  email: string,
+  telefone: string,
+  dataDeNascimento: string,
+  profissao: string,
+  celular: string,
+  possuiWhatsapp: number,
+  notificacoesSMS: number,
+  notificacoesEmail: number
+}
+
+interface IRecordsProps {
+  handleAddContact: (data: IDataForm) => void;
+}
+
+export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
   const [possuiWhatsapp, setPossuiWhatsapp] = useState(0);
   const [notificacoesSMS, setNotificacoesSMS] = useState(0);
   const [notificacoesEmail, setNotificacoesEmail] = useState(0);
 
-  const handleRegistrationContact = async (e: FormEvent) => {
-    e.preventDefault();
+  const formRef = useRef<FormHandles>(null);
 
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData);
-
-    try {
-      const res = await axios.post(`${Env.URL_BASE}/criar`, {
-        nome: data.nome,
-        email: data.email,
-        telefone: data.telefone,
-        dataDeNascimento: dataDeNascimento,
-        profissao: data.profissao,
-        celular: data.celular,
-        possuiWhatsapp: possuiWhatsapp,
-        notificacoesSMS: notificacoesSMS,
-        notificacoesEmail: notificacoesEmail
-      });
-
-      if (res.status === 200) {
-        toast.success(res.data.dados);
-      }
-
-    } catch (error) {
-      console.log(error);
-      toast.error("Erro ao cadastrar um contato");
+  const handleSubmit = async (data: IDataForm) => {
+    const dataForm = {
+      ...data,
+      possuiWhatsapp: possuiWhatsapp,
+      notificacoesSMS: notificacoesSMS,
+      notificacoesEmail: notificacoesEmail
     }
+    handleAddContact(dataForm);
   };
 
   return (
     <main className={`${common.container} ${styles.main}`}>
-      <form onSubmit={handleRegistrationContact}>
+      <Form ref={formRef} onSubmit={(data) => handleSubmit(data)}>
         <header className={styles.fields}>
           <div className={styles.fieldsColumns}>
             <TextField
@@ -83,8 +83,6 @@ export const Records: React.FC = () => {
             <TextField
               label="Data de nascimento"
               type="date"
-              onChange={(e) => setDataDeNascimento(e.target.value)}
-              value={dataDeNascimento}
               name="dataDeNascimento"
               required
             />
@@ -139,7 +137,7 @@ export const Records: React.FC = () => {
         <button type="submit" className={styles.cadastrarContato}>
           Cadastrar contato
         </button>
-      </form>
+      </Form>
     </main>
   );
 }
