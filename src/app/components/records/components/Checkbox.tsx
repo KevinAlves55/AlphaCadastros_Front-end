@@ -9,7 +9,9 @@ interface ITextField extends InputHTMLAttributes<HTMLInputElement> {
 export const Checkbox: React.FC<ITextField> = ({ label, ...props }) => {
   return (
     <div className="checkboxItem">
-      <input type="checkbox" />
+      <input
+        {...props}
+      />
       <label>{label}</label>
     </div>
   );

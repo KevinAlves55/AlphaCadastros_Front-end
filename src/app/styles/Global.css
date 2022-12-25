@@ -1,3 +1,5 @@
+@import url("react-toastify/dist/ReactToastify.css");
+
 :root {
   --gray-100: #e1e1e6;
   --gray-300: #c4c4c6;
