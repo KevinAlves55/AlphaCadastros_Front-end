@@ -11,10 +11,10 @@ import excluir from "../../assets/excluir.png";
 interface ITabelaProps {
   contatos: IContact[];
   handleDeleteContact: (id: number) => void;
-  handleOpenModalContactUpdate: () => void;
+  handleEditFood: (id: number) => void;
 }
 
-export const Table: React.FC<ITabelaProps> = ({ contatos, handleDeleteContact, handleOpenModalContactUpdate }) => {
+export const Table: React.FC<ITabelaProps> = ({ contatos, handleDeleteContact, handleEditFood }) => {
   return (
     <section className={`${common.container} ${styles.secaoTabelaContatos}`}>
       <table className={styles.tableContainer}>
@@ -42,7 +42,7 @@ export const Table: React.FC<ITabelaProps> = ({ contatos, handleDeleteContact, h
                   src={editar}
                   alt="Editar"
                   title="Editar"
-                  onClick={handleOpenModalContactUpdate}
+                  onClick={() => handleEditFood(contato.id)}
                 />
                 <img
                   src={excluir}

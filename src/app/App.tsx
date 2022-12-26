@@ -25,7 +25,9 @@ Modal.setAppElement("#root");
 
 export const App = () => {
   const [contatos, setContatos] = useState<IContact[]>([]);
-  const [isModalContactUpdate, setIsModalContactUpdate] = useState(true);
+  const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
+  const [isModalContactUpdate, setIsModalContactUpdate] = useState(false);
+  // const [editModalOpen, setEditModalOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`${Env.URL_BASE}/listar`).then(result => {
@@ -33,13 +35,17 @@ export const App = () => {
     });
   }, []);
 
-  const handleOpenModalContactUpdate = () => {
+  const handleEditFood = async (id: number) => {
+    await axios.get(`${Env.URL_BASE}/listar/${id}`).then(result => {
+      setEditingContact(result.data[0]);
+    });
+
     setIsModalContactUpdate(true);
   };
 
   const handleCloseModalContactUpdate = () => {
     setIsModalContactUpdate(false);
-  }
+  };
 
   const addContact = async (data: Omit<IContact, "id">): Promise<void> => {
     try {
@@ -75,6 +81,28 @@ export const App = () => {
     }
   };
 
+  const handleUpdateFood = async (data: Omit<IContact, "id">): Promise<void> => {
+    try {
+      const dataUpdate = {
+        ...editingContact, ...data
+      }
+      const res = await axios.put(`${Env.URL_BASE}/atualizar/${editingContact.id}`, dataUpdate);
+
+      const contactsUpdated = contatos.map(contato =>
+        contato.id !== res.data.contato.id ? contato : res.data.contato,
+      );
+      setContatos(contactsUpdated);
+
+      if (res.status === 200) {
+        toast.success(res.data.mensagem);
+      } else {
+        toast.error("Erro ao atualizar contato");
+      }
+    } catch (error) {
+      toast.error("Erro ao atualizar contato");
+    }
+  }
+
   return (
     <>
       <ToastContainer autoClose={3000} />
@@ -83,11 +111,13 @@ export const App = () => {
       <Table
         contatos={contatos}
         handleDeleteContact={deleteContact}
-        handleOpenModalContactUpdate={handleOpenModalContactUpdate}
+        handleEditFood={id => handleEditFood(id)}
       />
       <ModalContactUpdate
         isOpen={isModalContactUpdate}
         onRequestClose={handleCloseModalContactUpdate}
+        editingContact={editingContact}
+        handleUpdateFood={handleUpdateFood}
       />
     </>
   );

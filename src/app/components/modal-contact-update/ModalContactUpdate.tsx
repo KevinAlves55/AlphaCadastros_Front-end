@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
@@ -10,21 +10,57 @@ import { InputPatternFormat } from "../inputs/InputPatternFormat";
 import { Checkbox } from "../inputs/Checkbox";
 
 import styles from "./Styles.module.css";
+import { IContact } from "../../App";
+import { toast } from "react-toastify";
+
+export interface IContactUpdate {
+  nome: string,
+  email: string,
+  telefone: string,
+  dataDeNascimento: Date,
+  profissao: string,
+  celular: string,
+  possuiWhatsapp: number,
+  notificacoesSMS: number,
+  notificacoesEmail: number
+}
 
 interface IModalContactUpdateProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  handleUpdateFood: (data: IContactUpdate) => void;
+  editingContact: Omit<IContact, "id">;
 }
 
-export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = ({ isOpen, onRequestClose }) => {
+export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = (
+  {
+    isOpen,
+    onRequestClose,
+    editingContact,
+    handleUpdateFood
+  }
+) => {
   const [possuiWhatsapp, setPossuiWhatsapp] = useState(0);
   const [notificacoesSMS, setNotificacoesSMS] = useState(0);
   const [notificacoesEmail, setNotificacoesEmail] = useState(0);
 
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    setPossuiWhatsapp(editingContact.possuiWhatsapp);
+    setNotificacoesSMS(editingContact.notificacoesSMS);
+    setNotificacoesEmail(editingContact.notificacoesEmail);
+  }, [editingContact]);
 
+  const handleSubmit = async (data: IContactUpdate) => {
+    const dataForm = {
+      ...data,
+      possuiWhatsapp: possuiWhatsapp,
+      notificacoesSMS: notificacoesSMS,
+      notificacoesEmail: notificacoesEmail
+    }
+    handleUpdateFood(dataForm);
+    onRequestClose();
   };
 
   return (
@@ -34,7 +70,12 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = ({ isOpen,
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <Form ref={formRef} className={styles.formContainer} onSubmit={handleSubmit}>
+      <Form
+        ref={formRef}
+        className={styles.formContainer}
+        onSubmit={(data) => handleSubmit(data)}
+        initialData={editingContact}
+      >
         <header className={styles.fields}>
           <div className={styles.fieldsColumns}>
             <TextField
@@ -55,11 +96,10 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = ({ isOpen,
               maxLength={150}
             />
             <InputPatternFormat
-              format="(##) ####-####"
               mask="_"
+              format="(##) ####-####"
               label="Telefone para contato"
               placeholder="Ex.:(11) 4547-7841"
-              valueIsNumericString
               name="telefone"
               required
             />
@@ -81,11 +121,10 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = ({ isOpen,
               maxLength={100}
             />
             <InputPatternFormat
-              format="(##) #####-####"
               mask="_"
+              format="(##) #####-####"
               label="Celular para contato"
               placeholder="Ex.:(11) 99116-5873"
-              valueIsNumericString
               name="celular"
               required
             />
@@ -120,8 +159,8 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = ({ isOpen,
           </div>
         </section>
 
-        <button type="submit" className={styles.cadastrarContato}>
-          Cadastrar contato
+        <button type="submit" className={styles.atualizarContato}>
+          Atualizar contato
         </button>
       </Form>
     </Modal>
