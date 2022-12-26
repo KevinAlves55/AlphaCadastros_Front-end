@@ -1,13 +1,11 @@
-import { FormEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
-import axios from "axios";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-import { toast } from "react-toastify";
 
-import { InputPatternFormat } from "./components/InputPatternFormat";
-import { TextField } from "./components/TextField";
-import { Checkbox } from "./components/Checkbox";
+import { TextField } from "../inputs/TextField";
+import { InputPatternFormat } from "../inputs/InputPatternFormat";
+import { Checkbox } from "../inputs/Checkbox";
 
 import styles from "./Styles.module.css";
 import common from "../../styles/Common.module.css";
