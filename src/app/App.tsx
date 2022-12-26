@@ -34,7 +34,7 @@ export const App = () => {
       const res = await axios.post(`${Env.URL_BASE}/criar`, data);
       setContatos([...contatos, res.data.contato]);
 
-      if (res.status === 200) {
+      if (res.status === 201) {
         toast.success(res.data.mensagem);
       } else {
         toast.error("Erro ao cadastrar contato");
