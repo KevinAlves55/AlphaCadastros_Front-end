@@ -1,9 +1,12 @@
+import { format } from "date-fns";
+
+import { IContact } from "../../App";
+
 import styles from "./Styles.module.css";
 import common from "../../styles/Common.module.css";
 
 import editar from "../../assets/editar.png";
 import excluir from "../../assets/excluir.png";
-import { IContact } from "../../App";
 
 interface ITabelaProps {
   contatos: IContact[];
@@ -28,7 +31,9 @@ export const Tabela: React.FC<ITabelaProps> = ({ contatos, handleDeleteContact }
           {contatos.map(contato => (
             <tr key={contato.id}>
               <td>{contato.nome}</td>
-              <td>03/10/2013</td>
+              <td>{new Intl.DateTimeFormat("pt-BR").format(
+                new Date(contato.dataDeNascimento)
+              )}</td>
               <td>{contato.email}</td>
               <td>{contato.celular}</td>
               <td className={styles.imgCell}>

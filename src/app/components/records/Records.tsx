@@ -16,7 +16,7 @@ interface IDataForm {
   nome: string,
   email: string,
   telefone: string,
-  dataDeNascimento: string,
+  dataDeNascimento: Date,
   profissao: string,
   celular: string,
   possuiWhatsapp: number,
