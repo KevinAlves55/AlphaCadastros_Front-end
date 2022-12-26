@@ -4,10 +4,10 @@ import axios from "axios";
 
 import { toast, ToastContainer } from "react-toastify";
 
-import { Header, Records } from "./components";
+import { Header, Records, Tabela } from "./components";
 import { Env } from "./env";
 
-interface IContact {
+export interface IContact {
   id: number;
   nome: string,
   email: string,
@@ -45,11 +45,16 @@ export const App = () => {
     }
   };
 
+  const deleteContact = async (id: number): Promise<void> => {
+
+  };
+
   return (
     <>
       <ToastContainer autoClose={3000} />
       <Header />
       <Records handleAddContact={addContact} />
+      <Tabela contatos={contatos} handleDeleteContact={deleteContact} />
     </>
   );
 };
