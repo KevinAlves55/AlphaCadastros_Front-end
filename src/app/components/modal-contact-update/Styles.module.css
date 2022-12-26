@@ -47,6 +47,7 @@
   color: var(--white);
   font-weight: 700;
   align-self: flex-end;
+  cursor: pointer;
 }
 
 @media (max-width: 410px) {
