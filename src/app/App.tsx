@@ -46,7 +46,21 @@ export const App = () => {
   };
 
   const deleteContact = async (id: number): Promise<void> => {
+    try {
+      const res = await axios.delete(`${Env.URL_BASE}/deletar/${id}`);
+      const dadosDeletado = contatos.filter(contato => contato.id !== id);
 
+      setContatos(dadosDeletado);
+
+      if (res.status === 200) {
+        toast.success(res.data.mensagem);
+      } else {
+        toast.error("Erro ao deletar contato");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao deletar contato");
+    }
   };
 
   return (
