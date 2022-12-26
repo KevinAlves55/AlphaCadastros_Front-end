@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import Modal from "react-modal";
 
 import { toast, ToastContainer } from "react-toastify";
 
-import { Header, Records, Table } from "./components";
+import { Header, ModalContactUpdate, Records, Table } from "./components";
 import { Env } from "./env";
 
 export interface IContact {
@@ -20,14 +21,25 @@ export interface IContact {
   notificacoesEmail: number
 }
 
+Modal.setAppElement("#root");
+
 export const App = () => {
   const [contatos, setContatos] = useState<IContact[]>([]);
+  const [isModalContactUpdate, setIsModalContactUpdate] = useState(false);
 
   useEffect(() => {
     axios.get(`${Env.URL_BASE}/listar`).then(result => {
       setContatos(result.data);
     });
   }, []);
+
+  const handleOpenModalContactUpdate = () => {
+    setIsModalContactUpdate(true);
+  };
+
+  const handleCloseModalContactUpdate = () => {
+    setIsModalContactUpdate(false);
+  }
 
   const addContact = async (data: Omit<IContact, "id">): Promise<void> => {
     try {
@@ -68,7 +80,15 @@ export const App = () => {
       <ToastContainer autoClose={3000} />
       <Header />
       <Records handleAddContact={addContact} />
-      <Table contatos={contatos} handleDeleteContact={deleteContact} />
+      <Table
+        contatos={contatos}
+        handleDeleteContact={deleteContact}
+        handleOpenModalContactUpdate={handleOpenModalContactUpdate}
+      />
+      <ModalContactUpdate
+        isOpen={isModalContactUpdate}
+        onRequestClose={handleCloseModalContactUpdate}
+      />
     </>
   );
 };
