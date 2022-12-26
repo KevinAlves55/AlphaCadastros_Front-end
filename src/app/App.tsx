@@ -25,7 +25,7 @@ Modal.setAppElement("#root");
 
 export const App = () => {
   const [contatos, setContatos] = useState<IContact[]>([]);
-  const [isModalContactUpdate, setIsModalContactUpdate] = useState(false);
+  const [isModalContactUpdate, setIsModalContactUpdate] = useState(true);
 
   useEffect(() => {
     axios.get(`${Env.URL_BASE}/listar`).then(result => {
