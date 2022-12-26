@@ -11,7 +11,6 @@ import { Checkbox } from "./components/Checkbox";
 
 import styles from "./Styles.module.css";
 import common from "../../styles/Common.module.css";
-import { Env } from "../../env";
 
 interface IDataForm {
   nome: string,
@@ -44,6 +43,13 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
       notificacoesEmail: notificacoesEmail
     }
     handleAddContact(dataForm);
+
+    formRef.current?.reset({
+      data: ""
+    });
+    setNotificacoesEmail(0);
+    setNotificacoesSMS(0);
+    setPossuiWhatsapp(0);
   };
 
   return (
