@@ -13,7 +13,7 @@ interface ITabelaProps {
   handleDeleteContact: (id: number) => void;
 }
 
-export const Tabela: React.FC<ITabelaProps> = ({ contatos, handleDeleteContact }) => {
+export const Table: React.FC<ITabelaProps> = ({ contatos, handleDeleteContact }) => {
   return (
     <section className={`${common.container} ${styles.secaoTabelaContatos}`}>
       <table className={styles.tableContainer}>

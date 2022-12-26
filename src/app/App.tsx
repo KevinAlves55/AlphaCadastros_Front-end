@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { toast, ToastContainer } from "react-toastify";
 
-import { Header, Records, Tabela } from "./components";
+import { Header, Records, Table } from "./components";
 import { Env } from "./env";
 
 export interface IContact {
@@ -68,7 +68,7 @@ export const App = () => {
       <ToastContainer autoClose={3000} />
       <Header />
       <Records handleAddContact={addContact} />
-      <Tabela contatos={contatos} handleDeleteContact={deleteContact} />
+      <Table contatos={contatos} handleDeleteContact={deleteContact} />
     </>
   );
 };

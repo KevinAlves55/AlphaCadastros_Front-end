@@ -1,3 +1,3 @@
 export * from "./header/Header";
 export * from "./records/Records";
-export * from "./tabela/Tabela";
+export * from "./table/Table";
