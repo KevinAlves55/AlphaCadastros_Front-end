@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 import { toast, ToastContainer } from "react-toastify";
 
-import { Header, ModalContactUpdate, Records, Table } from "./components";
+import { Footer, Header, ModalContactUpdate, Records, Table } from "./components";
 import { Env } from "./env";
 
 export interface IContact {
@@ -83,12 +83,10 @@ export const App = () => {
         ...editingContact, ...data
       }
       const res = await axios.put(`${Env.URL_BASE}/atualizar/${editingContact.id}`, dataUpdate);
-      console.log("RES", res);
 
       const contactsUpdated = contatos.map(contato =>
         contato.id !== res.data.contato.id ? contato : res.data.contato,
       );
-      console.log("contactsUpdated", contactsUpdated);
       setContatos(contactsUpdated);
 
       if (res.status === 200) {
@@ -117,6 +115,7 @@ export const App = () => {
         editingContact={editingContact}
         handleUpdateFood={handleUpdateFood}
       />
+      <Footer />
     </>
   );
 };
