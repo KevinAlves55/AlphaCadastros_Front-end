@@ -55,6 +55,15 @@
   font-weight: 700;
   align-self: flex-end;
   cursor: pointer;
+  transition: .1s background-color;
+  -webkit-transition: .1s background-color;
+  -moz-transition: .1s background-color;
+  -ms-transition: .1s background-color;
+  -o-transition: .1s background-color;
+}
+
+.cadastrarContato:hover {
+  background-color: var(--blue-dark);
 }
 
 @media (max-width: 410px) {
