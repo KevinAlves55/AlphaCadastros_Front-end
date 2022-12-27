@@ -48,16 +48,25 @@
   font-weight: 700;
   align-self: flex-end;
   cursor: pointer;
+  transition: .1s background-color;
+  -webkit-transition: .1s background-color;
+  -moz-transition: .1s background-color;
+  -ms-transition: .1s background-color;
+  -o-transition: .1s background-color;
 }
 
-@media (max-width: 410px) {
-  .main form .fields {
+.atualizarContato:hover {
+  background-color: var(--blue-dark);
+}
+
+@media (max-width: 450px) {
+  .formContainer .fields {
     flex-wrap: wrap;
   }
 }
 
 @media (max-width: 768px) {
-  .cadastrarContato {
+  .atualizarContato {
     width: 100%;
   }
 }

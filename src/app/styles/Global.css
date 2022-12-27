@@ -47,14 +47,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0 1.1rem;
 }
 
 .react-modal-content {
   width: 100%;
   max-width: 576px;
   background-color: var(--white);
-  padding: 3rem;
+  padding: 2.8rem;
   position: relative;
   border-radius: 0.25rem;
   outline: none;
@@ -63,5 +63,10 @@ button {
 @media (max-width: 768px) {
   html {
     font-size: 87.5%;
+  }
+
+  .react-modal-content {
+    overflow: scroll;
+    height: 40rem;
   }
 }
