@@ -27,7 +27,6 @@ export const App = () => {
   const [contatos, setContatos] = useState<IContact[]>([]);
   const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
   const [isModalContactUpdate, setIsModalContactUpdate] = useState(false);
-  // const [editModalOpen, setEditModalOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`${Env.URL_BASE}/listar`).then(result => {

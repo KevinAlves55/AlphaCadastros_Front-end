@@ -3,7 +3,7 @@ import { PatternFormat, PatternFormatProps } from "react-number-format";
 import { useField } from "@unform/core";
 
 import "./InputStyle.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface IPatternFormatProps extends PatternFormatProps {
   name: string;
@@ -11,25 +11,27 @@ interface IPatternFormatProps extends PatternFormatProps {
 }
 
 export const InputPatternFormat: React.FC<IPatternFormatProps> = ({ name, label, ...props }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  // const inputRef = useRef<HTMLInputElement>(null);
 
   const { fieldName, defaultValue, registerField } = useField(name);
+  const [value, setValue] = useState<string>(defaultValue);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: inputRef.current,
-      path: "value",
+      getValue: () => value,
+      setValue: (_, newValue) => setValue(newValue)
     });
-  }, [fieldName, registerField]);
+  }, [fieldName, registerField, value]);
 
   return (
     <div className="boxInput">
       <label>{label}</label>
       <PatternFormat
-        defaultValue={defaultValue}
-        getInputRef={inputRef}
         {...props}
+        defaultValue={defaultValue}
+        value={value}
+        onChange={e => { setValue(e.target.value); props.onChange?.(e); }}
       />
     </div>
   );

@@ -42,12 +42,17 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
     }
     handleAddContact(dataForm);
 
-    formRef.current?.reset({
-      data: ""
-    });
-    setNotificacoesEmail(0);
-    setNotificacoesSMS(0);
     setPossuiWhatsapp(0);
+    setNotificacoesSMS(0);
+    setNotificacoesEmail(0);
+    formRef.current?.setData({
+      nome: "",
+      email: "",
+      telefone: "",
+      dataDeNascimento: "",
+      profissao: "",
+      celular: ""
+    });
   };
 
   return (
@@ -62,7 +67,6 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
               name="nome"
               required
               maxLength={50}
-              style={{ textTransform: "capitalize" }}
             />
             <TextField
               label="E-mail"
@@ -77,7 +81,6 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
               mask="_"
               label="Telefone para contato"
               placeholder="Ex.:(11) 4547-7841"
-              valueIsNumericString
               name="telefone"
               required
             />
@@ -103,7 +106,6 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
               mask="_"
               label="Celular para contato"
               placeholder="Ex.:(11) 99116-5873"
-              valueIsNumericString
               name="celular"
               required
             />
