@@ -80,7 +80,7 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = (
           <div className={styles.fieldsColumns}>
             <TextField
               label="Nome completo"
-              placeholder="Ex.: Alguma coisa super bacana"
+              placeholder="Ex.: Letícia Pacheco dos Santos"
               type="text"
               name="nome"
               required
@@ -89,7 +89,7 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = (
             />
             <TextField
               label="E-mail"
-              placeholder="Ex.: Alguma coisa super bacana"
+              placeholder="Ex.: leticia@gmail.com"
               type="email"
               name="email"
               required
@@ -99,7 +99,7 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = (
               mask="_"
               format="(##) ####-####"
               label="Telefone para contato"
-              placeholder="Ex.:(11) 4547-7841"
+              placeholder="Ex.:(11) 4033-2019"
               name="telefone"
               required
             />
@@ -115,7 +115,7 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = (
             <TextField
               label="Profissão"
               type="text"
-              placeholder="Ex.: Alguma coisa super bacana"
+              placeholder="Ex.: Desenvolvedora Web"
               name="profissao"
               required
               maxLength={100}
@@ -124,7 +124,7 @@ export const ModalContactUpdate: React.FC<IModalContactUpdateProps> = (
               mask="_"
               format="(##) #####-####"
               label="Celular para contato"
-              placeholder="Ex.:(11) 99116-5873"
+              placeholder="Ex.:(11) 98493-2039"
               name="celular"
               required
             />

@@ -62,7 +62,7 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
           <div className={styles.fieldsColumns}>
             <TextField
               label="Nome completo"
-              placeholder="Ex.: Alguma coisa super bacana"
+              placeholder="Ex.: Letícia Pacheco dos Santos"
               type="text"
               name="nome"
               required
@@ -70,7 +70,7 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
             />
             <TextField
               label="E-mail"
-              placeholder="Ex.: Alguma coisa super bacana"
+              placeholder="Ex.: leticia@gmail.com"
               type="email"
               name="email"
               required
@@ -80,7 +80,7 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
               format="(##) ####-####"
               mask="_"
               label="Telefone para contato"
-              placeholder="Ex.:(11) 4547-7841"
+              placeholder="Ex.:(11) 4033-2019"
               name="telefone"
               required
             />
@@ -96,7 +96,7 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
             <TextField
               label="Profissão"
               type="text"
-              placeholder="Ex.: Alguma coisa super bacana"
+              placeholder="Ex.: Desenvolvedora Web"
               name="profissao"
               required
               maxLength={100}
@@ -105,7 +105,7 @@ export const Records: React.FC<IRecordsProps> = ({ handleAddContact }) => {
               format="(##) #####-####"
               mask="_"
               label="Celular para contato"
-              placeholder="Ex.:(11) 99116-5873"
+              placeholder="Ex.:(11) 98493-2039"
               name="celular"
               required
             />
