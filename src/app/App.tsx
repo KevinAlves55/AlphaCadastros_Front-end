@@ -34,11 +34,8 @@ export const App = () => {
     });
   }, []);
 
-  const handleEditFood = async (id: number) => {
-    await axios.get(`${Env.URL_BASE}/listar/${id}`).then(result => {
-      setEditingContact(result.data[0]);
-    });
-
+  const handleEditFood = async (data: IContact) => {
+    setEditingContact(data);
     setIsModalContactUpdate(true);
   };
 
@@ -86,10 +83,12 @@ export const App = () => {
         ...editingContact, ...data
       }
       const res = await axios.put(`${Env.URL_BASE}/atualizar/${editingContact.id}`, dataUpdate);
+      console.log("RES", res);
 
       const contactsUpdated = contatos.map(contato =>
         contato.id !== res.data.contato.id ? contato : res.data.contato,
       );
+      console.log("contactsUpdated", contactsUpdated);
       setContatos(contactsUpdated);
 
       if (res.status === 200) {
@@ -110,7 +109,7 @@ export const App = () => {
       <Table
         contatos={contatos}
         handleDeleteContact={deleteContact}
-        handleEditFood={id => handleEditFood(id)}
+        handleEditFood={(contato) => handleEditFood(contato)}
       />
       <ModalContactUpdate
         isOpen={isModalContactUpdate}
